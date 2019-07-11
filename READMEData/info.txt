@@ -1,0 +1,2 @@
+https://www.kaggle.com/c/career-con-2019
+convolution description - https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md
