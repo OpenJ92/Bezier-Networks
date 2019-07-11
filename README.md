@@ -93,19 +93,3 @@ tetra = conv2dbezierNetwork(**kwargs)
 ```
 
 Both of these examples can be called with the appropriate sized tensor construct. My hope is to use these bezier networks to optimize over possible architectures which are modeled by position and number of control points of the bezier curve. 
-
-### Bezier Variational Autoencoder Example
-#### Raw Data
-Describe the data as it came in. Use the Kaggle page as an initial scaffold.
-![](READMEData/rawData.png)
-#### Order One Transformation
-Describe the order one tensor construction process and justify it's existance as a means to hyperconnect our data
-![](READMEData/orderOne.png)
-#### Taylor Transformation
-![](READMEData/taylorDecaynthOrder.png)
-
-
-```python
-
-```
-# Bezier-Networks
