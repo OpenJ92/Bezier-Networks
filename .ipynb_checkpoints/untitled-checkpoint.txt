@@ -1,3 +1,0 @@
-1) (Consider rephrasing) I appreciated our discussion 
-2) Mention that after we spoke about DBMIs use of google cloud, I've taken it upon myself to look further into the service as it will be useful in a current project I'm working on [Bezier Neural Networks](https://github.com/OpenJ92/NavBot_Kaggle).
-3) I'd like to speak with you again soon. Perhaps we might get a coffee 
