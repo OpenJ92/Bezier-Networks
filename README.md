@@ -87,7 +87,7 @@ To construct a Tetrahedral Architecture, we'll have to construct a single kwargs
 ```python 
 shape_in, shape_out = np.array([10,64,8]), np.array([10,8,64])
 control1 = controlPointsUniformRandomEnclosingPrism(shape_in, shape_out)(2)
-kwargs = {'shape_in': shape_in, 'shape_out': latent_space_shape, 'control_points': control1, 'bezier_samples': 10, 'layers': 1}
+kwargs = {'shape_in': shape_in, 'shape_out': shape_out, 'control_points': control1, 'bezier_samples': 10, 'layers': 1}
 
 tetra = conv2dbezierNetwork(**kwargs)
 ```
