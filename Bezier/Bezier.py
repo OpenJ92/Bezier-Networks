@@ -3,7 +3,7 @@ from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosi
 
 # consider putting an argument that overwrites the default random control points 
 # with particularly formed points. maybe make a set of 'controlPoint' subclasses that
-# generate them in particular ways.
+# generate them in particular ways. (Incomplete)
 class bezierCurve():
     """
         Parameters

@@ -96,7 +96,6 @@ class controlPointsVertebralWalk():
     def make_unit(self, v):
         return v / np.linalg.norm(v)
 
-
 if __name__ == '__main__':
     shape_in = np.array([10, 128, 128])
     shape_out = np.array([100, 4, 4])
