@@ -34,8 +34,6 @@ class bezierVAE(nn.Module):
         self.unflatten = UnFlatten()
         self.decoder_Conv = conv2dbezierNetwork(**dC).callable_network
 
-    # We changed our bottleneck element so that it subscribes to the following link:
-    #       https://github.com/pytorch/examples/blob/master/vae/main.py
     def bottleneck(self, h):
         mu, logvar = self.mu_(h), self.var_(h)
         std = torch.exp(.5*logvar)
