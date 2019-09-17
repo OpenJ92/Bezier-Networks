@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\title{Bezier Neural Networks}
+\author{Jacob Martin Vartuli-Schonberg}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Bezier Curves: Recursive Construction}
+We will first define and inspect the core object of study in our paper, the Bezier Curve. To my mind,
+the Bezier Curve is a function mapping from \( R^{m x n} \to R^{m x t} \) parameterized be a real number \(t \in [0,1]\).
+In effect, we're mapping an m by n matrix \(A^{m x n}\) into a function of a single parameter \(t\). One might write this
+relation in the function \(B\) as
+\begin{equation} \label{1} B^{n-1}(A) = b(t) \end{equation}
+where \(B\) is an opperator on a matrix and \(b\) is a function \( R^{m x n} \to R^{1} \to R^{m} \). With this abstraction, 
+let us now define explicitly. We define an opperator \(B | R^{m x m x t} \to R^{m x {n-1 x t}}\) on a matrix \(A^{m x n}\) as 
+\begin{equation} B(A^1) = A^2(t) \end{equation}
+Particularly, this opperation is a convolution of the column space of \(A_1\) and comes in the form of
+
+\begin{subequations}
+  \begin{equation}
+    B(A^1)_i = A^1_i + t(A^1_{:,i-1} - A^1_{:,i})
+  \end{equation}
+  \begin{equation}
+    B(A^1)_i = (1 - t)A^1_{:,i} + A^1_{:,i-1}
+  \end{equation}
+\end{subequations}
+
+As you can see, the resulting matrix upon one operation results in a matrix \(A^{nxm-1|t} \). Suppose we apply this operation
+\(l\) times upon that same matrix where \(l < n\). We would then arrive at the matrix 
+\begin{equation}
+  B^l(A)_{:, i} = (1-t)B^{l-1}(A)_{:,i}
+\end{equation}
+
+
+\section{On the Resolution of Convolution Kernal Parameters}
+\section{On the Synthesis of Bezier and Kernal Parameters}
+
+\end{document}

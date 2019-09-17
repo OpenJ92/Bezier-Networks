@@ -83,11 +83,11 @@ class conv2dbezierNetwork():
 
 if __name__ == "__main__":
     shape_in = np.array([10, 32, 32])
-    shape_out = np.array([1000, 1, 1])
-    control_points = controlPointsUniformRandomEnclosingPrism(shape_in, shape_out)(2)
-    control_points_r = controlPointsUniformRandomEnclosingPrism(shape_out, shape_in)(2)
-    bCN = conv2dbezierNetwork(shape_in, shape_out, control_points, 20, 2)
-    bCNr = conv2dbezierNetwork(shape_out, shape_in, control_points_r, 20, 2)
+    shape_out = np.array([10, 2, 2])
+    control_points = controlPointsUniformRandomEnclosingPrism(shape_in, shape_out)(1)
+    control_points_r = controlPointsUniformRandomEnclosingPrism(shape_out, shape_in)(1)
+    bCN = conv2dbezierNetwork(shape_in, shape_out, control_points, 10, 2)
+    bCNr = conv2dbezierNetwork(shape_out, shape_in, control_points_r, 10, 2)
     data_sample = torch.from_numpy(np.random.random_sample(size = (25, *shape_in))).float()
     data_sample_r = torch.from_numpy(np.random.random_sample(size = (25, *shape_out))).float()
     

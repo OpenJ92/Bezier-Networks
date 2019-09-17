@@ -2,12 +2,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-from Dense.denseBezierNetwork import densebezierNetwork
-from Conv2D.conv2dBezierNetwork import conv2dbezierNetwork
-from Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
+from BezierNetwork.Dense.denseBezierNetwork import densebezierNetwork
+from BezierNetwork.Conv2D.conv2dBezierNetwork import conv2dbezierNetwork
+from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
 from torchvision import transforms, utils
-from dataTransform import *
-from dataLoad import NavBotData
 
 class Flatten(nn.Module):
     def forward(self, input):

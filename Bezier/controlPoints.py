@@ -9,8 +9,8 @@ class controlPointsUniformRandomEnclosingPrism():
 
         shape_out : np.array(shape = (dimension of tensor,))
             The desired shape of output tensor
-
     """
+
     def __init__(self, shape_in, shape_out):
         self.shape_in = shape_in
         self.shape_out = shape_out
