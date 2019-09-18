@@ -6,7 +6,6 @@ from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosi
 from BezierNetwork.Bezier.Bezier import bezierCurve
 from BezierNetwork.Dense.denseLinearInterpolation import DenseInterpolation
 
-
 class densebezierNetwork():
 
     def __init__(self, shape_in, shape_out, control_points, bezier_samples, layers):

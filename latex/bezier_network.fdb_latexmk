@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1568660466 "bezier_network.tex" "bezier_network.pdf" "bezier_network" 1568660466
+["pdflatex"] 1568692042 "bezier_network.tex" "bezier_network.pdf" "bezier_network" 1568760704
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -37,11 +37,11 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1557342086 4259635 562fc36ec496993777a6c428d8bfb811 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "bezier_network.aux" 1568660466 422 b1b566c90c807cf1387b81cf2e92634e "pdflatex"
-  "bezier_network.tex" 1568660465 1712 48df8aef5f17d544dcc087d2d7de661c ""
-  "bezier_network.toc" 1568660466 273 ff05b863a56da07646229be6cc676202 "pdflatex"
+  "bezier_network.aux" 1568692042 422 b1b566c90c807cf1387b81cf2e92634e "pdflatex"
+  "bezier_network.tex" 1568760098 1932 255e13336c66407da2301c1101529b7e ""
+  "bezier_network.toc" 1568692042 273 ff05b863a56da07646229be6cc676202 "pdflatex"
   (generated)
-  "bezier_network.toc"
-  "bezier_network.log"
   "bezier_network.pdf"
+  "bezier_network.log"
+  "bezier_network.toc"
   "bezier_network.aux"
