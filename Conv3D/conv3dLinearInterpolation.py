@@ -24,7 +24,7 @@ class Conv3dInterpolation():
     """
     def __init__(self, shape_in, shape_out, layers):
         self.shape_in_ = shape_in
-       self.shape_out_ = shape_out
+        self.shape_out_ = shape_out
         self.control_points_ = np.stack([self.shape_in_, self.shape_out_], axis = 1)
         self.function = Bezier.bezierCurve(self.shape_in_, self.shape_out_, self.control_points_)
         self.layers_ = layers

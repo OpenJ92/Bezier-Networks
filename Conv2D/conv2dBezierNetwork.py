@@ -17,9 +17,8 @@ class conv2dbezierNetwork():
     layers : int
     bezier : bezierCurve
     network : list(torch.nn)
-    callable : nn.Sequential
-    """
-
+callable : nn.Sequential
+"""
     def __init__(self, shape_in, shape_out, control_points, bezier_samples, layers):
         self.bezier = bezierCurve(shape_in, shape_out, control_points)
         self.network = self.construct_Networks(layers, bezier_samples)
@@ -41,9 +40,9 @@ class conv2dbezierNetwork():
 
     def construct_Sequential_Networks(self, reverse = False):
         return [nn.Sequential(*net.construct_InterpolationNetwork()) for net in self.network]
+        tS = [self.network[0].sample_interpolation()]
 
     def tensor_shape(self):
-        tS = [self.network[0].sample_interpolation()]
         for i in range(1, len(self.network)):
             tS.append(self.network[i].sample_interpolation()[1:])
         tS = np.concatenate(tS, axis = 0)
