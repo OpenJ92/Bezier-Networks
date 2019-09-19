@@ -4,6 +4,28 @@ import torch.nn as nn
 import BezierNetwork.Bezier.Bezier as Bezier
 
 class Conv1dInterpolation():
+    """
+    Parameters
+    --------------
+    shape_in : np.array - Initial shape of tensor to be transformed.
+    shape_out : np.array - Output shape of tensor to be tranformed to.
+    control_points : np.array - Control Point set to control linear bezier form.
+    function : bezierCurve - Bezier curve sampled for interior layers of interpolation.
+    layers : int - number of layers in interpolation.
+
+    Methods
+    -------------
+    sample_interpolatioon(self) - sample bezierCurve object
+    contract(self, shape_in, shape_out) - construct a Conv2DTranspose operation 
+                            given shape state in construct_InterpolationNetwork
+    dialate(self, shape_in, shape_out) - construct a Conv2D operation given shape 
+                            state in construct_InterpolationNetwork
+    warp(self, shape_in, shape_out) - construct an itterated Conv2d to Conv2DTranspose
+                            provided dimension delta are not all monotonic (increase/decrease)
+    construct_InterpolationNetwork(self) - sample bezierCurve for self.layers points 
+                            apply dialate, contract or warp where appropriate.
+
+    """
     def __init__(self, shape_in, shape_out, layers):
         self.shape_in_ = shape_in
         self.shape_out_ = shape_out

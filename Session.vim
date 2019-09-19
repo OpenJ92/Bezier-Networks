@@ -12,6 +12,7 @@ vmap <BS> "-d
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set backspace=indent,eol,start
+set errorfile=~/Desktop/Project/BezierNetwork/latex/bezier_network.log
 set fileencodings=ucs-bom,utf-8,default,latin1
 set helplang=en
 set langmenu=none
@@ -36,6 +37,7 @@ argglobal
 %argdel
 $argadd .
 set stal=2
+tabnew
 tabnew
 tabnew
 tabnew
@@ -179,12 +181,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 6 - ((5 * winheight(0) + 27) / 55)
+let s:l = 62 - ((40 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-6
-normal! 0
+62
+normal! 05|
 wincmd w
 argglobal
 if bufexists("Conv1D/conv1dBezierNetwork.py") | buffer Conv1D/conv1dBezierNetwork.py | else | edit Conv1D/conv1dBezierNetwork.py | endif
@@ -311,12 +313,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 38 - ((37 * winheight(0) + 27) / 55)
+let s:l = 39 - ((38 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-38
-normal! 03|
+39
+normal! 05|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
 exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
@@ -460,12 +462,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 6 - ((5 * winheight(0) + 27) / 55)
+let s:l = 13 - ((12 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-6
-normal! 06|
+13
+normal! 07|
 wincmd w
 argglobal
 if bufexists("Conv2D/conv2dLinearInterpolation.py") | buffer Conv2D/conv2dLinearInterpolation.py | else | edit Conv2D/conv2dLinearInterpolation.py | endif
@@ -592,17 +594,17 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 11 - ((10 * winheight(0) + 27) / 55)
+let s:l = 7 - ((6 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
-normal! 0
+7
+normal! 04|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
 exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
 tabnext
-edit Conv2D/conv2dBezierNetwork.py
+edit Conv3D/conv3dBezierNetwork.py
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -741,12 +743,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 20 - ((19 * winheight(0) + 27) / 55)
+let s:l = 18 - ((17 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-20
-normal! 03|
+18
+normal! 04|
 wincmd w
 argglobal
 if bufexists("Conv3D/conv3dLinearInterpolation.py") | buffer Conv3D/conv3dLinearInterpolation.py | else | edit Conv3D/conv3dLinearInterpolation.py | endif
@@ -873,15 +875,156 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 10 - ((9 * winheight(0) + 27) / 55)
+let s:l = 29 - ((28 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
+29
 normal! 05|
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
 exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
+tabnext
+edit examples/bezierVAE.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=b:#,fb:-
+setlocal commentstring=#\ %s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'python'
+setlocal filetype=python
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=^\\s*\\(from\\|import\\)
+setlocal includeexpr=substitute(substitute(substitute(v:fname,b:grandparent_match,b:grandparent_sub,''),b:parent_match,b:parent_sub,''),b:child_match,b:child_sub,'g')
+setlocal indentexpr=GetPythonIndent(v:lnum)
+setlocal indentkeys=0{,0},0),0],:,!^F,o,O,e,<:>,=elif,=except
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=pydoc
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal nomacmeta
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=pythoncomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+set relativenumber
+setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal sidescrolloff=-1
+setlocal signcolumn=auto
+setlocal nosmartindent
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!pyeval('powerline.statusline(30)')
+setlocal suffixesadd=.py
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'python'
+setlocal syntax=python
+endif
+setlocal tabstop=8
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+setlocal termwinkey=
+setlocal termwinscroll=10000
+setlocal termwinsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal wincolor=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 48 - ((28 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+48
+normal! 0
 tabnext
 edit latex/bezier_network.tex
 set splitbelow splitright
@@ -1267,15 +1410,16 @@ normal! zt
 normal! 0
 tabnext 3
 set stal=1
-badd +38 Conv1D/conv1dBezierNetwork.py
+badd +5 Conv1D/conv1dBezierNetwork.py
 badd +7 Conv3D/conv3dBezierNetwork.py
-badd +44 Bezier/Bezier.py
+badd +5 Bezier/Bezier.py
 badd +11 Conv3D/conv3dLinearInterpolation.py
-badd +12 Bezier/controlPoints.py
+badd +5 Bezier/controlPoints.py
 badd +1 latex/bezier_network.tex
 badd +2 Conv1D/conv1dLinearInterpolation.py
+badd +1 examples/bezierVAE.py
 badd +8 Conv2D/conv2dLinearInterpolation.py
-badd +6 Conv2D/conv2dBezierNetwork.py
+badd +15 Conv2D/conv2dBezierNetwork.py
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
