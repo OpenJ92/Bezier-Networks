@@ -19,10 +19,14 @@ We will first define and inspect the core object of study in our paper, the Bezi
 the Bezier Curve is a function mapping from \( R^{m x n} \to R^{m x t} \) parameterized be a real number \(t \in [0,1]\).
 In effect, we're mapping an m by n matrix \(A^{m x n}\) into a function of a single parameter \(t\). One might write this
 relation in the function \(B\) as
+
 \begin{equation} \label{1} B^{n-1}(A) = b(t|A) \end{equation}
+
 where \(B\) is an opperator on a matrix and \(b\) is a function \( R^{m x n} \to R^{1} \to R^{m} \). With this abstraction, 
 let us now define explicitly. We define an opperator \(B | R^{m x m x t} \to R^{m x {n-1 x t}}\) on a matrix \(A^{m x n}\) as 
+
 \begin{equation} B(A^1) = A^2(t) \end{equation}
+
 Particularly, this opperation is a convolution of the column space of \(A_1\) and comes in the form of
 
 \begin{subequations}
@@ -36,17 +40,44 @@ Particularly, this opperation is a convolution of the column space of \(A_1\) an
 
 As you can see, the resulting matrix upon one operation results in a matrix \(A^{nxm-1|t} \). Suppose we apply this operation
 \(l\) times upon that same matrix where \(l < n\). We would then arrive at the matrix 
+
 \begin{equation}
   B^l(A)_{:, i} = (1-t)B^{l-1}(A)_{:,i} + B^{l-1}(A)_{:,i-1}
 \end{equation}
 if \(l = n\), we arrive at a vector valued function which is named a bezier curve.
+
 \begin{equation}
   b(t|A) = B^m(A)_{:, i} = (1-t)B^{l-1}(A)_{:,i} + B^{l-1}(A)_{:,i-1}
 \end{equation}
+
 We will soon come to see that a treatment of such a curve will enable us to construct a myriad or family of Neural Networks
 given a set of control points or as given above, a matrix \(A\)
 
+\begin{equation}
+	\frac{\delta b(t|A)}{\delta A} \in R^{nxnxm|t}
+\end{equation}
+\begin{equation}
+	\frac{\delta b(t|A)}{\delta t} \in R^{n|t}
+\end{equation}
+where equation 6 will be of the utmost imporatnce in the comming sections.
+
 \section{On the Resolution of Convolution Kernal Parameters}
+Consider the selection of the parameters of the Kernel of a Convolutional Network. As far as I can see, there is no consideration outside
+a desire to resolve such Kernels in the static situation. In this section, we will take into consideration these formula in detail and seek 
+to apply them to the dynamic case.
+
+\begin{equation}
+	a^2 + b^2 = c^2
+\end{equation}
+
+Ultimately, these forms are of the linear flavor. What are some questions that one should consider? Consider the number of solutions for moving
+from one layer to the next. Consider a collection of policies which one might employ for choosing from such a solution set and how a choice effects
+choices later in the process. What are the choices that are invarient in this process? etc ...
+
 \section{On the Synthesis of Bezier and Kernal Parameters}
+With a firm understanding of the Bezier construction and f the parameters of the Kernel, we now seek to synthesize such concepts so as to introduce
+a new means to hyperparameterize Neural Networks for training.
+
+\section{Testing - Experiment}
 
 \end{document}

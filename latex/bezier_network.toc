@@ -1,3 +1,4 @@
 \contentsline {section}{\numberline {1}Bezier Curves: Recursive Construction}{2}% 
-\contentsline {section}{\numberline {2}On the Resolution of Convolution Kernal Parameters}{2}% 
-\contentsline {section}{\numberline {3}On the Synthesis of Bezier and Kernal Parameters}{2}% 
+\contentsline {section}{\numberline {2}On the Resolution of Convolution Kernal Parameters}{3}% 
+\contentsline {section}{\numberline {3}On the Synthesis of Bezier and Kernal Parameters}{3}% 
+\contentsline {section}{\numberline {4}Testing - Experiment}{3}% 
