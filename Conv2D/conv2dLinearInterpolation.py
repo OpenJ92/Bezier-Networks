@@ -16,10 +16,14 @@ class Conv2dInterpolation():
     Methods
     -------------
     sample_interpolatioon(self) - sample bezierCurve object
-    contract(self, shape_in, shape_out) - construct a Conv2DTranspose operation given shape state in construct_InterpolationNetwork
-    dialate(self, shape_in, shape_out) - construct a Conv2D operation given shape state in construct_InterpolationNetwork
-    warp(self, shape_in, shape_out) - construct an itterated Conv2d to Conv2DTranspose provided dimension delta are not all monotonic (increase/decrease)
-    construct_InterpolationNetwork(self) - sample bezierCurve for self.layers points apply dialate, contract or warp where appropriate.
+    contract(self, shape_in, shape_out) - construct a Conv2DTranspose operation 
+                            given shape state in construct_InterpolationNetwork
+    dialate(self, shape_in, shape_out) - construct a Conv2D operation given shape 
+                            state in construct_InterpolationNetwork
+    warp(self, shape_in, shape_out) - construct an itterated Conv2d to Conv2DTranspose
+                            provided dimension delta are not all monotonic (increase/decrease)
+    construct_InterpolationNetwork(self) - sample bezierCurve for self.layers points 
+                            apply dialate, contract or warp where appropriate.
 
     """
     def __init__(self, shape_in, shape_out, layers):

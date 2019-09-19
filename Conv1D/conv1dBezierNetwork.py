@@ -35,4 +35,21 @@ class conv1DbezierNetwork():
         return tS
 
 if __name__ == "__main__":
-    pass
+    # Remeber to reconstruct these files so that they're sutible for the 1 dimensional convolutional
+    # network architecture. as it stands, these files should not compile. We should also consider 
+    # construction of a testing suite using hypothesis.
+    shape_in = np.array([10, 8, 64])
+    shape_out = np.array([100, 64, 8])
+    examples = 10
+    sample_data = torch.from_numpy(np.random.random_sample(size=(examples, *shape_in))).float()
+    sample_data_reverse = torch.from_numpy(np.random.random_sample(size=(examples, *shape_out))).float()
+    c = Conv2dInterpolation(shape_in=shape_in, shape_out=shape_out, layers=4)
+    d = Conv2dInterpolation(shape_in=shape_out, shape_out=shape_in, layers=4)
+    _c = nn.Sequential(*c.construct_InterpolationNetwork())
+    _d = nn.Sequential(*d.construct_InterpolationNetwork())
+
+    A = _c(sample_data)
+    B = _d(A)
+
+    Q = _d(sample_data_reverse)
+    W = _c(Q)
