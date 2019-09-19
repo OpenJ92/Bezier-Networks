@@ -7,7 +7,18 @@ from BezierNetwork.Bezier.Bezier import bezierCurve
 from BezierNetwork.Conv3D.conv3dLinearInterpolation import Conv3dInterpolation
 
 class conv3dbezierNetwork():
-
+    """
+    Parameters
+    ------------
+    shape_in : np.array
+    shape_out : np.array
+    control_points : controlPoints
+    bezier_samples : int
+    layers : int
+    bezier : bezierCurve
+    network : list(torch.nn)
+    callable : nn.Sequential
+    """
     def __init__(self, shape_in, shape_out, control_points, bezier_samples, layers):
         self.bezier = bezierCurve(shape_in, shape_out, control_points)
         self.network = self.construct_Networks(layers, bezier_samples)
