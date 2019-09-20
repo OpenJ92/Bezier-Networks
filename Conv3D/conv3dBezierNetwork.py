@@ -2,9 +2,17 @@ import numpy as np
 import math
 import torch
 import torch.nn as nn
-from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
+from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism,controlPointsVertebralWalk
 from BezierNetwork.Bezier.Bezier import bezierCurve
 from BezierNetwork.Conv3D.conv3dLinearInterpolation import Conv3dInterpolation
+
+"""
+File: conv3dBezierNetwork.py
+Author: Jacob Vartuli-Schonberg
+Email: jacob.vartuli.92@gmail.com
+Github: https://github.com/OpenJ92
+Description: Bezier Convolutional 3D Neural Networks
+"""
 
 class conv3dbezierNetwork():
     """

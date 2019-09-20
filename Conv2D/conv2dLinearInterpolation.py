@@ -3,6 +3,14 @@ import torch
 import torch.nn as nn
 import BezierNetwork.Bezier.Bezier as Bezier
 
+"""
+File: conv2dLinearInterpolation.py
+Author: Jacob Vartuli-Schonberg
+Email: jacob.vartuli.92@gmail.com
+Github: https://github.com/OpenJ92
+Description: Interpolation for Convolution 3D objects
+"""
+
 class Conv2dInterpolation():
     """
     Parameters
