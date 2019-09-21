@@ -6,6 +6,14 @@ from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosi
 from BezierNetwork.Bezier.Bezier import bezierCurve
 from BezierNetwork.Conv2D.conv2dLinearInterpolation import Conv2dInterpolation
 
+"""
+File: conv2dBezierNetwork.py
+Author: Jacob Vartuli-Schonberg
+Email: jacob.vartuli.92@gmail.com
+Github: https://github.com/OpenJ92
+Description: 
+"""
+
 class conv2dbezierNetwork():
     """
     Parameters
