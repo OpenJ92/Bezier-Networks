@@ -1,5 +1,9 @@
 # Fdb version 3
+<<<<<<< HEAD
 ["pdflatex"] 1569013468 "bezier_network.tex" "bezier_network.pdf" "bezier_network" 1569013468
+=======
+["pdflatex"] 1568856327 "bezier_network.tex" "bezier_network.pdf" "bezier_network" 1568856327
+>>>>>>> parent of 4ffc4a8... Changes to Conv directories and begun to construct a new version of this
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -37,11 +41,20 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1557342086 4259635 562fc36ec496993777a6c428d8bfb811 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
+<<<<<<< HEAD
   "bezier_network.aux" 1569013468 528 ce58eec8d46df1d2995e2633f6afd41a "pdflatex"
   "bezier_network.tex" 1569013467 3384 ae1f1672a8044eca54821f6114d514cd ""
   "bezier_network.toc" 1569013468 339 5822bf866e020183428101e388f33151 "pdflatex"
   (generated)
   "bezier_network.aux"
+=======
+  "bezier_network.aux" 1568856327 528 ce58eec8d46df1d2995e2633f6afd41a "pdflatex"
+  "bezier_network.tex" 1568856325 3383 dfc46ee9c37b69c734be24bdde9ebe0d ""
+  "bezier_network.toc" 1568856327 339 5822bf866e020183428101e388f33151 "pdflatex"
+  (generated)
+>>>>>>> parent of 4ffc4a8... Changes to Conv directories and begun to construct a new version of this
   "bezier_network.pdf"
+  "bezier_network.log"
+  "bezier_network.aux"
   "bezier_network.toc"
   "bezier_network.log"
