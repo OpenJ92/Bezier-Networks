@@ -83,8 +83,8 @@ if __name__ == "__main__":
     samples = np.random.randint(2, 20, size = (50, 4))
     examples = 100
 
-    for i in range(50):
-        for j in range(50):
+    for i in range(10):
+        for j in range(10):
             shape_in, shape_out = samples[i], samples[j]
             sample_data = torch.from_numpy(np.random.random_sample(size=(examples, *shape_in))).float()
             print(f"shape_in = {shape_in}, shape_out = {shape_out}")

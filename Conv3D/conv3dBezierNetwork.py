@@ -55,8 +55,8 @@ if __name__ == "__main__":
     samples = np.random.randint(2, 40, size = (50, 4))
     examples = 25 
 
-    for i in range(50):
-        for j in range(50):
+    for i in range(10):
+        for j in range(10):
             shape_in, shape_out = samples[i], samples[j]
             control_points = controlPointsUniformRandomEnclosingPrism(shape_in, shape_out)(2)
             bCN3D = conv3dbezierNetwork(shape_in, shape_out, control_points, 5, 2)
