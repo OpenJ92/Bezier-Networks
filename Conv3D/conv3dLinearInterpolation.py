@@ -1,7 +1,8 @@
 import numpy as np
 import torch
 import torch.nn as nn
-import BezierNetwork.Bezier.Bezier as Bezier
+
+import bezier_network.Bezier.Bezier as Bezier
 
 class Conv3dInterpolation():
     """

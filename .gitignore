@@ -1,4 +1,6 @@
 *.vim
 *.swp
 *.swo
+*.swp
+*.swn
 *.pyc
