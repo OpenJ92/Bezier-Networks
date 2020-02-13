@@ -35,6 +35,5 @@ if __name__ == '__main__':
     shape_out = np.array([10])
     control_points = controlPointsUniformRandomEnclosingPrism(shape_in, shape_out)(2)
     dBC = densebezierNetwork(shape_in, shape_out, control_points, 20, 3)
-
     data_sample = torch.from_numpy(np.random.random_sample(1500)).float()
     A = dBC(data_sample)
