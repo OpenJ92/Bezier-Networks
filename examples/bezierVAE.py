@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-from BezierNetwork.Dense.denseBezierNetwork import densebezierNetwork
-from BezierNetwork.Conv2D.conv2dBezierNetwork import conv2dbezierNetwork
-from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
+from bezier_network.dense.dense_bezier_network import densebezierNetwork
+from bezier_network.conv2d.conv2d_bezier_network import conv2dbezierNetwork
+from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
 from torchvision import transforms, utils
 
 class Flatten(nn.Module):

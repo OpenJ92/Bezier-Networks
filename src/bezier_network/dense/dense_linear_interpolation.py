@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 import torch.nn as nn
-import BezierNetwork.Bezier.Bezier as Bezier
+import bezier_network.bezier.bezier as Bezier
 
 class DenseInterpolation():
     """

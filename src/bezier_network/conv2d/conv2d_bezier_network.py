@@ -2,9 +2,9 @@ import numpy as np
 import math
 import torch
 import torch.nn as nn
-from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
-from BezierNetwork.Bezier.Bezier import bezierCurve
-from BezierNetwork.Conv2D.conv2dLinearInterpolation import Conv2dInterpolation
+from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
+from bezier_network.bezier.bezier import bezierCurve
+from bezier_network.conv2d.conv2d_linear_interpolation import Conv2dInterpolation
 
 """
 File: conv2dBezierNetwork.py

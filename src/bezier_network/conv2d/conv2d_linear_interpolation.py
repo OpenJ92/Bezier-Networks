@@ -1,9 +1,9 @@
 import numpy as np
 import torch
 import torch.nn as nn
-import BezierNetwork.Bezier.Bezier as Bezier
+import bezier_network.bezier.bezier as Bezier
 
-class Conv1dInterpolation():
+class Conv2dInterpolation():
     """
     Parameters
     --------------
@@ -80,9 +80,6 @@ class Conv1dInterpolation():
         return network 
 
 if __name__ == "__main__":
-    # Remeber to reconstruct these files so that they're sutible for the 1 dimensional convolutional
-    # network architecture. as it stands, these files should not compile. We should also consider 
-    # construction of a testing suite using hypothesis.
     shape_in = np.array([10, 8, 64])
     shape_out = np.array([100, 64, 8])
     examples = 10
