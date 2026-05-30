@@ -3,9 +3,9 @@ import math
 import torch
 import torch.nn as nn
 
-from bezier_network.Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
-from bezier_network.Bezier.Bezier import bezierCurve
-from bezier_network.Conv3D.conv3dLinearInterpolation import Conv3dInterpolation
+from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
+from bezier_network.bezier.bezier import bezierCurve
+from bezier_network.conv3d.conv3d_linear_interpolation import Conv3dInterpolation
 
 class conv3dbezierNetwork():
     """
@@ -46,7 +46,7 @@ class conv3dbezierNetwork():
     def tensor_shape(self):
         pass
 
-    def coonstruct_voxel_diagram(self):
+    def construct_voxel_diagram(self):
         pass
 
     def plot(self):
@@ -54,7 +54,7 @@ class conv3dbezierNetwork():
 
 if __name__ == "__main__":
     samples = np.random.randint(2, 40, size = (50, 4))
-    examples = 25 
+    examples = 25
 
     for i in range(10):
         for j in range(10):
@@ -63,6 +63,7 @@ if __name__ == "__main__":
             bCN3D = conv3dbezierNetwork(shape_in, shape_out, control_points, 5, 2)
             sample_data = torch.from_numpy(np.random.random_sample(size=(examples, *shape_in))).float()
             print(f"shape_in = {shape_in}, shape_out = {shape_out}")
+            import pdb;pdb.set_trace()
             try:
                 Q = bCN3D(sample_data)
             except Exception as e:

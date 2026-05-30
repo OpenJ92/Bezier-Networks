@@ -2,9 +2,9 @@ import numpy as np
 import math
 import torch
 import torch.nn as nn
-from BezierNetwork.Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
-from BezierNetwork.Bezier.Bezier import bezierCurve
-from BezierNetwork.Conv2D.conv2dLinearInterpolation import Conv2dInterpolation
+from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
+from bezier_network.bezier.bezier import bezierCurve
+from bezier_network.conv1d.conv1d_linear_interpolation import Conv1dInterpolation
 
 class conv1DbezierNetwork():
     """
@@ -33,7 +33,7 @@ class conv1DbezierNetwork():
         samples = self.sample_bezier(samples)
         network = []
         for i in range(samples.shape[0] - 1):
-            linear_net = Conv2dInterpolation(samples[i,:,:].flatten(), samples[i+1,:,:].flatten(), layers_)
+            linear_net = Conv1dInterpolation(samples[i,:,:].flatten(), samples[i+1,:,:].flatten(), layers_)
             network.append(linear_net)
         return network
 

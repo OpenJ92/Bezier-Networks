@@ -3,8 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import transforms
 import numpy as np
-from Dense.denseBezierNetwork import densebezierNetwork
-from Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
+from bezier_network.dense.dense_bezier_network import densebezierNetwork
+from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
 
 class Flatten(nn.Module):
     def forward(self, input):

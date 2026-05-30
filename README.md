@@ -11,8 +11,8 @@ Users are asked to construct a collection of control points. From these elements
 
 ```python
 import numpy as np
-from Bezier import bezierCurve
-from controlPoints import controlPointsUniformRandomEnclosingPrism
+from bezier_network.bezier.bezier import bezierCurve
+from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism
 
 shape_in, shape_out = np.array([10, 32]), np.array([100, 2])
 control_points = controlPointsUniformRandomEnclosingPrism(shape_in, shape_out)

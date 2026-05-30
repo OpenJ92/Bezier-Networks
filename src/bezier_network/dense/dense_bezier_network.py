@@ -2,9 +2,9 @@ import numpy as np
 import math
 import torch
 import torch.nn as nn
-from bezier_network.Bezier.controlPoints import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
-from bezier_network.Bezier.Bezier import bezierCurve
-from bezier_network.Dense.denseLinearInterpolation import DenseInterpolation
+from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
+from bezier_network.bezier.bezier import bezierCurve
+from bezier_network.dense.dense_linear_interpolation import DenseInterpolation
 
 class densebezierNetwork():
 

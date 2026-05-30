@@ -1,0 +1,16 @@
+.git
+__pycache__
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.swn
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.venv
+build
+dist
+*.egg-info
+latex
+READMEData
