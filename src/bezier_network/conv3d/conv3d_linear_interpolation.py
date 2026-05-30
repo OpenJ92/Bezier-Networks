@@ -1,10 +1,9 @@
 import numpy as np
-import torch
 import torch.nn as nn
 
-import bezier_network.bezier.bezier as Bezier
+from bezier_network.bezier.bezier import ShapeBezierCurve
 
-class Conv3dInterpolation():
+class Conv3dInterpolation:
     """
     Parameters
     --------------
@@ -28,25 +27,24 @@ class Conv3dInterpolation():
 
     """
     def __init__(self, shape_in, shape_out, layers):
-        self.shape_in_ = shape_in
-        self.shape_out_ = shape_out
-        self.control_points_ = np.stack([self.shape_in_, self.shape_out_], axis = 1)
-        self.function = Bezier.bezierCurve(self.shape_in_, self.shape_out_, self.control_points_)
+        self.shape_in_ = np.asarray(shape_in, dtype=int)
+        self.shape_out_ = np.asarray(shape_out, dtype=int)
+        self.function = ShapeBezierCurve.linear(self.shape_in_, self.shape_out_)
         self.layers_ = layers
 
     def sample_interpolation(self):
-        return np.rint([self.function(sample).flatten() for sample in np.linspace(0,1,self.layers_ + 2)]).astype('int')
+        return self.function.sample(self.layers_ + 2)
 
     def construct_InterpolationNetwork(self):
         A = self.sample_interpolation()
         network = []
         for layer in range(self.layers_ + 1):
             shape_diff = A[layer+1, 1:] - A[layer, 1:]
-            if shape_diff[0] >= 0 and shape_diff[1] >= 0 and shape_diff[2] >= 0:
+            if np.all(shape_diff >= 0):
                 network.append(self.dialate(A[layer], A[layer+1]))
                 network.append(nn.LeakyReLU())
                 network.append(nn.BatchNorm3d(num_features = A[layer+1][0]))
-            elif shape_diff[0] <= 0 and shape_diff[1] <= 0 and shape_diff[2] <= 0:
+            elif np.all(shape_diff <= 0):
                 network.append(self.contract(A[layer], A[layer+1]))
                 network.append(nn.LeakyReLU())
                 network.append(nn.BatchNorm3d(num_features = A[layer+1][0]))
@@ -72,28 +70,12 @@ class Conv3dInterpolation():
         network = []
         for layer in range(3):
             shape_diff = A[layer+1, 1:] - A[layer, 1:]
-            if shape_diff[0] >= 0 and shape_diff[1] >= 0 and shape_diff[2] >= 0:
+            if np.all(shape_diff >= 0):
                 network.append(self.dialate(A[layer], A[layer+1]))
                 network.append(nn.LeakyReLU())
-            elif shape_diff[0] <= 0 and shape_diff[1] <= 0 and shape_diff[2] <= 0:
+                network.append(nn.BatchNorm3d(num_features = A[layer+1][0]))
+            elif np.all(shape_diff <= 0):
                 network.append(self.contract(A[layer], A[layer+1]))
                 network.append(nn.LeakyReLU())
+                network.append(nn.BatchNorm3d(num_features = A[layer+1][0]))
         return network 
-
-if __name__ == "__main__":
-    samples = np.random.randint(2, 20, size = (50, 4))
-    examples = 100
-
-    for i in range(10):
-        for j in range(10):
-            shape_in, shape_out = samples[i], samples[j]
-            sample_data = torch.from_numpy(np.random.random_sample(size=(examples, *shape_in))).float()
-            print(f"shape_in = {shape_in}, shape_out = {shape_out}")
-            try:
-                c = Conv3dInterpolation(shape_in=shape_in, shape_out=shape_out, layers=4)
-                _c = nn.Sequential(*c.construct_InterpolationNetwork())
-                A = _c(sample_data)
-            except Exception as e:
-                print("\n")
-                print(e, "\n")
-

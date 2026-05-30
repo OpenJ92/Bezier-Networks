@@ -1,9 +1,8 @@
 import numpy as np
-import torch
 import torch.nn as nn
-import bezier_network.bezier.bezier as Bezier
+from bezier_network.bezier.bezier import ShapeBezierCurve
 
-class Conv2dInterpolation():
+class Conv2dInterpolation:
     """
     Parameters
     --------------
@@ -27,14 +26,13 @@ class Conv2dInterpolation():
 
     """
     def __init__(self, shape_in, shape_out, layers):
-        self.shape_in_ = shape_in
-        self.shape_out_ = shape_out
-        self.control_points = np.stack([self.shape_in_, self.shape_out_], axis = 1)
-        self.function = Bezier.bezierCurve(self.shape_in_, self.shape_out_, self.control_points)
+        self.shape_in_ = np.asarray(shape_in, dtype=int)
+        self.shape_out_ = np.asarray(shape_out, dtype=int)
+        self.function = ShapeBezierCurve.linear(self.shape_in_, self.shape_out_)
         self.layers_ = layers
     
     def sample_interpolation(self):
-        return np.rint([self.function(sample).flatten() for sample in np.linspace(0,1,self.layers_ + 2)]).astype('int')
+        return self.function.sample(self.layers_ + 2)
 
     def construct_InterpolationNetwork(self):
         A = self.sample_interpolation()
@@ -78,20 +76,3 @@ class Conv2dInterpolation():
                 network.append(nn.LeakyReLU())
                 network.append(nn.BatchNorm2d(num_features = A[layer+1][0]))
         return network 
-
-if __name__ == "__main__":
-    shape_in = np.array([10, 8, 64])
-    shape_out = np.array([100, 64, 8])
-    examples = 10
-    sample_data = torch.from_numpy(np.random.random_sample(size=(examples, *shape_in))).float()
-    sample_data_reverse = torch.from_numpy(np.random.random_sample(size=(examples, *shape_out))).float()
-    c = Conv2dInterpolation(shape_in=shape_in, shape_out=shape_out, layers=4)
-    d = Conv2dInterpolation(shape_in=shape_out, shape_out=shape_in, layers=4)
-    _c = nn.Sequential(*c.construct_InterpolationNetwork())
-    _d = nn.Sequential(*d.construct_InterpolationNetwork())
-
-    A = _c(sample_data)
-    B = _d(A)
-
-    Q = _d(sample_data_reverse)
-    W = _c(Q)

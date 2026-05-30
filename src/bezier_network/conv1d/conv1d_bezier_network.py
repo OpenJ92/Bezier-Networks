@@ -1,12 +1,9 @@
 import numpy as np
-import math
-import torch
 import torch.nn as nn
-from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
-from bezier_network.bezier.bezier import bezierCurve
+from bezier_network.bezier.bezier import ShapeBezierCurve
 from bezier_network.conv1d.conv1d_linear_interpolation import Conv1dInterpolation
 
-class conv1DbezierNetwork():
+class Conv1dBezierNetwork(nn.Module):
     """
     Parameters
     ------------
@@ -20,20 +17,22 @@ class conv1DbezierNetwork():
     callable : nn.Sequential
     """
     def __init__(self, shape_in, shape_out, control_points, bezier_samples, layers):
-        self.bezier = bezierCurve(shape_in, shape_out, control_points)
+        super().__init__()
+        self.bezier = ShapeBezierCurve(shape_in, shape_out, control_points)
         self.network = self.construct_Networks(layers, bezier_samples)
         self.callable_network = nn.Sequential(*self.construct_Sequential_Networks())
 
-    def __call__(self, A):
+    def forward(self, A):
         return self.callable_network(A)
 
     def sample_bezier(self, num_samples):
-        return np.apply_along_axis(lambda x: self.bezier(x), 1, np.linspace(0, 1, num_samples).reshape(num_samples, 1))
+        return self.bezier.sample(num_samples)
+
     def construct_Networks(self, layers_, samples):
         samples = self.sample_bezier(samples)
         network = []
         for i in range(samples.shape[0] - 1):
-            linear_net = Conv1dInterpolation(samples[i,:,:].flatten(), samples[i+1,:,:].flatten(), layers_)
+            linear_net = Conv1dInterpolation(samples[i], samples[i+1], layers_)
             network.append(linear_net)
         return network
 
@@ -41,27 +40,11 @@ class conv1DbezierNetwork():
         return [nn.Sequential(*net.construct_InterpolationNetwork()) for net in self.network]
 
     def tensor_shape(self):
+        tS = [self.network[0].sample_interpolation()]
         for i in range(1, len(self.network)):
             tS.append(self.network[i].sample_interpolation()[1:])
         tS = np.concatenate(tS, axis = 0)
         return tS
 
-if __name__ == "__main__":
-    # Remeber to reconstruct these files so that they're sutible for the 1 dimensional convolutional
-    # network architecture. as it stands, these files should not compile. We should also consider 
-    # construction of a testing suite using hypothesis.
-    shape_in = np.array([10, 8, 64])
-    shape_out = np.array([100, 64, 8])
-    examples = 10
-    sample_data = torch.from_numpy(np.random.random_sample(size=(examples, *shape_in))).float()
-    sample_data_reverse = torch.from_numpy(np.random.random_sample(size=(examples, *shape_out))).float()
-    c = Conv2dInterpolation(shape_in=shape_in, shape_out=shape_out, layers=4)
-    d = Conv2dInterpolation(shape_in=shape_out, shape_out=shape_in, layers=4)
-    _c = nn.Sequential(*c.construct_InterpolationNetwork())
-    _d = nn.Sequential(*d.construct_InterpolationNetwork())
 
-    A = _c(sample_data)
-    B = _d(A)
-
-    Q = _d(sample_data_reverse)
-    W = _c(Q)
+conv1DbezierNetwork = Conv1dBezierNetwork

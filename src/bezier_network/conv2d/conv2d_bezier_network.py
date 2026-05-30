@@ -1,9 +1,7 @@
 import numpy as np
 import math
-import torch
 import torch.nn as nn
-from bezier_network.bezier.control_points import controlPointsUniformRandomEnclosingPrism, controlPointsVertebralWalk
-from bezier_network.bezier.bezier import bezierCurve
+from bezier_network.bezier.bezier import ShapeBezierCurve
 from bezier_network.conv2d.conv2d_linear_interpolation import Conv2dInterpolation
 
 """
@@ -14,7 +12,7 @@ Github: https://github.com/OpenJ92
 Description: 
 """
 
-class conv2dbezierNetwork():
+class Conv2dBezierNetwork(nn.Module):
     """
     Parameters
     ------------
@@ -28,29 +26,30 @@ class conv2dbezierNetwork():
     callable : nn.Sequential
     """
     def __init__(self, shape_in, shape_out, control_points, bezier_samples, layers):
-        self.bezier = bezierCurve(shape_in, shape_out, control_points)
+        super().__init__()
+        self.bezier = ShapeBezierCurve(shape_in, shape_out, control_points)
         self.network = self.construct_Networks(layers, bezier_samples)
         self.callable_network = nn.Sequential(*self.construct_Sequential_Networks())
 
-    def __call__(self, A):
+    def forward(self, A):
         return self.callable_network(A)
 
     def sample_bezier(self, num_samples):
-        return np.apply_along_axis(lambda x: self.bezier(x), 1, np.linspace(0, 1, num_samples).reshape(num_samples, 1))
+        return self.bezier.sample(num_samples)
 
     def construct_Networks(self, layers_, samples):
         samples = self.sample_bezier(samples)
         network = []
         for i in range(samples.shape[0] - 1):
-            linear_net = Conv2dInterpolation(samples[i,:,:].flatten(), samples[i+1,:,:].flatten(), layers_)
+            linear_net = Conv2dInterpolation(samples[i], samples[i+1], layers_)
             network.append(linear_net)
         return network
 
     def construct_Sequential_Networks(self, reverse = False):
         return [nn.Sequential(*net.construct_InterpolationNetwork()) for net in self.network]
-        tS = [self.network[0].sample_interpolation()]
 
     def tensor_shape(self):
+        tS = [self.network[0].sample_interpolation()]
         for i in range(1, len(self.network)):
             tS.append(self.network[i].sample_interpolation()[1:])
         tS = np.concatenate(tS, axis = 0)
@@ -88,18 +87,5 @@ class conv2dbezierNetwork():
 
         plt.show()
 
-if __name__ == "__main__":
-    shape_in = np.array([10, 32, 32])
-    shape_out = np.array([10, 2, 2])
-    control_points = controlPointsUniformRandomEnclosingPrism(shape_in, shape_out)(1)
-    control_points_r = controlPointsUniformRandomEnclosingPrism(shape_out, shape_in)(1)
-    bCN = conv2dbezierNetwork(shape_in, shape_out, control_points, 10, 2)
-    bCNr = conv2dbezierNetwork(shape_out, shape_in, control_points_r, 10, 2)
-    data_sample = torch.from_numpy(np.random.random_sample(size = (25, *shape_in))).float()
-    data_sample_r = torch.from_numpy(np.random.random_sample(size = (25, *shape_out))).float()
-    
-    Q = bCN(data_sample)
-    W = bCNr(Q)
 
-    A = bCNr(data_sample_r)
-    B = bCN(A)
+conv2dbezierNetwork = Conv2dBezierNetwork

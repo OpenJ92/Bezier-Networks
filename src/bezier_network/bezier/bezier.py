@@ -103,3 +103,43 @@ class bezierCurve:
 
     def evaluate(self, t):
         return self.bezier(t).reshape(self.shape_in_.shape[0], 1)
+
+
+class ShapeBezierCurve:
+    """Bezier curve specialized for tensor-shape paths."""
+
+    def __init__(self, shape_in, shape_out, control_points, quantizer=np.ceil):
+        self.shape_in = np.asarray(shape_in, dtype=int)
+        self.shape_out = np.asarray(shape_out, dtype=int)
+        self.control_points = np.asarray(control_points, dtype=float)
+        self.quantizer = quantizer
+        self.curve = Bezier(self.control_points, collapse_axes=(1,))
+
+        if self.control_points.ndim != 2:
+            raise ValueError("shape control points must be a 2D array")
+        if self.control_points.shape[0] != self.shape_in.shape[0]:
+            raise ValueError("control point dimension must match shape dimension")
+
+    @classmethod
+    def linear(cls, shape_in, shape_out, quantizer=np.rint):
+        shape_in = np.asarray(shape_in, dtype=int)
+        shape_out = np.asarray(shape_out, dtype=int)
+        control_points = np.stack([shape_in, shape_out], axis=1)
+        return cls(shape_in, shape_out, control_points, quantizer=quantizer)
+
+    def evaluate(self, t):
+        return self.curve(t)
+
+    def quantize(self, values):
+        return self.quantizer(values).astype(int)
+
+    def shape_at(self, t):
+        return self.quantize(self.evaluate(t))
+
+    def sample(self, num_samples):
+        if num_samples < 2:
+            raise ValueError("a shape path requires at least two samples")
+        return np.asarray(
+            [self.shape_at(t) for t in np.linspace(0, 1, num_samples)],
+            dtype=int,
+        )
